@@ -15,11 +15,9 @@ def program3(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     List[int]: the indices of the chosen vaults(1-indexed)
     """
     # Naive brute-force Θ(2^n) algorithm:
-    # For each subset, check the constraint that no two chosen vaults are within
-    # k positions of each other. Track the subset with the maximum total value.
+    # Calculate the sum for each subset of vaults
     subset_sums = [0] * (1 << n)
     for mask in range(1 << n):
-        # Find the least significant bit set to 1
         if mask == 0:
             subset_sums[mask] = 0
         else:
@@ -30,10 +28,8 @@ def program3(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     best_value = 0
     best_mask = 0
 
-    # Validate subsets efficiently
+    # Validate each subset within distance constraint, choose maximum value
     for mask in range(1 << n):
-        # Check distance constraint in O(1) amortized using bit logic
-        # Example trick: ensure no two set bits are within k positions
         valid = True
         shifted = mask
         for _ in range(k):
@@ -45,7 +41,7 @@ def program3(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
             best_value = subset_sums[mask]
             best_mask = mask
 
-    # Extract chosen indices
+    # Extract chosen indices in 1-indexed format
     chosen = [i + 1 for i in range(n) if (best_mask >> i) & 1]
     return best_value, chosen
 
