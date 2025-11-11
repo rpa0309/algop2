@@ -54,6 +54,8 @@ def program4B(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
                 solution[pos] = [pos+1]
             else:
                 solution[pos] = [pos] + solution[pos+(k+1)]
+    # Update indices to match vaults instead of array style
+    solution[0] = [x+1 for x in solution[0]]
     return DP[0], solution[0] # replace with your code
 
 """
