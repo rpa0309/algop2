@@ -58,7 +58,7 @@ def program4B(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     solution[0] = [x+1 for x in solution[0]]
     return DP[0], solution[0] # replace with your code
 
-"""
+
 if __name__ == '__main__':
     n, k = map(int, input().split())
     values = list(map(int, input().split()))
@@ -68,8 +68,8 @@ if __name__ == '__main__':
     print(m)
     for i in indices:
         print(i)
-"""
 
+"""
 def generate_input(n: int) -> Tuple[int, int, List[int]]:
     k = random.randint(1, max(1, (n//2) - 1))
     temp = []
@@ -117,3 +117,4 @@ if __name__ == "__main__":
     plt.grid(True, linestyle='--', alpha=0.6)
     plt.tight_layout()
     plt.show()
+    """
