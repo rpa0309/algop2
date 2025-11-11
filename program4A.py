@@ -5,25 +5,12 @@ import matplotlib.pyplot as plt
 import sys
 
 def program4A(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
-    """
-    Solution to Program 4A
-    
-    Parameters:
-    n (int): number of vaults
-    k (int): no two chosen vaults are within k positions of each other
-    values (List[int]): the values of the vaults
-
-    Returns:
-    int:  maximal total value
-    List[int]: the indices of the chosen vaults(1-indexed)
-    """
-
     DP = [-1]*n
     solution = [[] for i in range(n)]
 
     val, indices = chooseVault(n-1, k+1, values, DP, solution)
     indices.reverse()
-    indices = [x + 1 for x in indicies]
+    indices = [x + 1 for x in indices]
 
     return val, indices # replace with your code
 
