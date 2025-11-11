@@ -1,7 +1,7 @@
 from typing import List, Tuple
-import timeit
-import random
-import matplotlib.pyplot as plt
+# import timeit
+# import random
+# import matplotlib.pyplot as plt
 # import sys
 
 def program4B(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
@@ -28,7 +28,7 @@ def program4B(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     
     # base case for the upcoming loop
     DP[n-1] = values[n-1]
-
+    solution[n-1] = [n-1]
 
     # for every value in Values (excluding the last one), R->L
     for pos in range(n-2, -1, -1):
@@ -38,22 +38,25 @@ def program4B(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
         if (pos+(k+1) >= n):
             # used to determine where to start the sum
             DP[pos] = max(values[pos], DP[pos+1])
-                # print("+Comparing:", values[pos], "to", DP[pos+1])
+            #print("+Comparing:", values[pos], "to", DP[pos+1])
             # choose indices
             if DP[pos] == values[pos]:
                 solution[pos] = [pos]
             else:
                 solution[pos] = [pos+1]
+            #print(solution)
         else:
             # compare a possible sum to the current sum
             # would start a new sum or continue
             DP[pos] = max(values[pos] + DP[pos+(k+1)], DP[pos+1])
-                # print("-Comparing:", values[pos], "+", DP[pos+(k+1)], "to", DP[pos+1])
+            #print("-Comparing:", values[pos], "+", DP[pos+(k+1)], "to", DP[pos+1])
             # choose indices
             if DP[pos] == DP[pos+1]:
-                solution[pos] = [pos+1]
+                solution[pos] = solution[pos+1]
             else:
                 solution[pos] = [pos] + solution[pos+(k+1)]
+            #print(DP)
+            # print(solution)
     # Update indices to match vaults instead of array style
     solution[0] = [x+1 for x in solution[0]]
     return DP[0], solution[0] # replace with your code
@@ -68,8 +71,8 @@ if __name__ == '__main__':
     print(m)
     for i in indices:
         print(i)
-
 """
+
 def generate_input(n: int) -> Tuple[int, int, List[int]]:
     k = random.randint(1, max(1, (n//2) - 1))
     temp = []
