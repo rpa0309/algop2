@@ -23,6 +23,7 @@ def program4A(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
 
     val, indices = chooseVault(n-1, k+1, values, DP, solution)
     indices.reverse()
+    indices = [x + 1 for x in indicies]
 
     return val, indices # replace with your code
 
